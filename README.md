@@ -1,1 +1,1 @@
-PureJsEditor3
+PureJsEditor
