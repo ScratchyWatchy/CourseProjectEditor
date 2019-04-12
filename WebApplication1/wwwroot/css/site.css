@@ -83,3 +83,41 @@ ul.tabs li.current{
 .tab-content.current{
     display: inherit;
 }
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.flat-button {
+    position: relative;
+    width: 125px;
+    height: 30px;
+    background: mistyrose;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition: color .3s;
+    /* Typo */
+    line-height: 20px;
+    text-align: center;
+    color: black;
+}
+
+    .flat-button:after {
+        position: absolute;
+        top: 90%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: salmon;
+        content: "";
+        z-index: -2;
+        transition: transform .3s;
+    }
+
+.flat-button:hover::after {
+    transform: translateY(-12%);
+    transition: transform .3s;
+}
