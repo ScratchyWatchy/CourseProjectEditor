@@ -6,18 +6,12 @@
     <meta name="description" content="A simple logic circuit editor and simulator." />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Copyright 1998-2019 by Northwoods Software Corporation. -->
-    
-    <script>
-        $( function() {
-            $( "#tabs" ).tabs();
-        } );
-    </script>
     <script src="https://gojs.net/latest/release/go-debug.js"></script>
     <script src="https://gojs.net/latest/extensions/Figures.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+    <script src="~/lib/pleaserotate.js"></script>
     <script id="code">
- 
+
 
         var red = "salmon";  // 0 or false
         var green = "palegreen";  // 1 or true
@@ -25,7 +19,7 @@
         var continious = true;
 
         function init() {
-            
+
             var $ = go.GraphObject.make;  // for conciseness in defining templates
 
             myDiagram =
@@ -69,7 +63,7 @@
                     $(go.Shape,
                         { name: "SHAPE", strokeWidth: 2, stroke: red }),
                     $(go.TextBlock,
-                        { name: "displayText", margin: 5, segmentIndex: 1, segmentFraction: 0.2, segmentOffset: new go.Point(0, -10)},
+                        { name: "displayText", margin: 5, segmentIndex: 1, segmentFraction: 0.2, segmentOffset: new go.Point(0, -10) },
                         new go.Binding("text", "key")));
 
             // node template helpers
@@ -82,14 +76,14 @@
             // define some common property settings
             function nodeStyle() {
                 return [new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
-                    new go.Binding("isShadowed", "isSelected").ofObject(),
-                    {
-                        selectionAdorned: false,
-                        shadowOffset: new go.Point(0, 0),
-                        shadowBlur: 15,
-                        shadowColor: "lightslategray",
-                        toolTip: sharedToolTip
-                    }
+                new go.Binding("isShadowed", "isSelected").ofObject(),
+                {
+                    selectionAdorned: false,
+                    shadowOffset: new go.Point(0, 0),
+                    shadowBlur: 15,
+                    shadowColor: "lightslategray",
+                    toolTip: sharedToolTip
+                }
                 ];
             }
 
@@ -315,14 +309,14 @@
                         { portId: "in", alignment: new go.Spot(0, 0.5) }),
                     $(go.Shape, "Rectangle", portStyle(false),
                         { portId: "out", alignment: new go.Spot(1, 0.5) }),
-            $(go.TextBlock, "1",
-                {
-                    name: "data",
-                    wrap: go.TextBlock.None, margin: 2, width: 25,
-                    isMultiline: false, editable: true, textAlign: 'left',
-                    font: '10pt  Segoe UI,sans-serif', stroke: 'Black'
-                },
-                new go.Binding("text", "data").makeTwoWay())
+                    $(go.TextBlock, "1",
+                        {
+                            name: "data",
+                            wrap: go.TextBlock.None, margin: 2, width: 25,
+                            isMultiline: false, editable: true, textAlign: 'left',
+                            font: '10pt  Segoe UI,sans-serif', stroke: 'Black'
+                        },
+                        new go.Binding("text", "data").makeTwoWay())
                 );
 
 
@@ -375,15 +369,12 @@
         }
 
         // update the diagram every 250 milliseconds
-        function loop()
-        {
-            if (continious)
-            {
-                setTimeout(function ()
-                    {
-                        updateStates();
-                        loop();
-                    },
+        function loop() {
+            if (continious) {
+                setTimeout(function () {
+                    updateStates();
+                    loop();
+                },
                     250);
             }
             else {
@@ -404,20 +395,20 @@
             // now we can do all other kinds of nodes
             myDiagram.nodes.each(function (node) {
                 switch (node.category) {
-                case "and": doAnd(node); break;
-                case "or": doOr(node); break;
-                case "xor": doXor(node); break;
-                case "not": doNot(node); break;
-                case "nand": doNand(node); break;
-                case "nor": doNor(node); break;
-                case "xnor": doXnor(node); break;
-                case "output": doOutput(node); break;
-                case "one": doOne(node); break;
-                case "add": doAdd(node); break;
-                case "multiply": doMult(node); break;
-                case "divide": doDivide(node); break;
-                case "percent": doPercent(node); break;
-                case "input": break;  // doInput already called, above
+                    case "and": doAnd(node); break;
+                    case "or": doOr(node); break;
+                    case "xor": doXor(node); break;
+                    case "not": doNot(node); break;
+                    case "nand": doNand(node); break;
+                    case "nor": doNor(node); break;
+                    case "xnor": doXnor(node); break;
+                    case "output": doOutput(node); break;
+                    case "one": doOne(node); break;
+                    case "add": doAdd(node); break;
+                    case "multiply": doMult(node); break;
+                    case "divide": doDivide(node); break;
+                    case "percent": doPercent(node); break;
+                    case "input": break;  // doInput already called, above
                 }
             });
             myDiagram.skipsUndoManager = oldskip;
@@ -430,7 +421,7 @@
 
         // helper function for propagating results
         function setOutputLinks(node, color, intext) {
-            node.findLinksOutOf().each(function (link) { link.findObject("SHAPE").stroke = color; link.findObject("displayText").text = intext;});
+            node.findLinksOutOf().each(function (link) { link.findObject("SHAPE").stroke = color; link.findObject("displayText").text = intext; });
         }
 
         // update nodes by the specific function for its type
@@ -492,12 +483,12 @@
 
         function doAdd(node) {
             var additionResult = 0;
-            node.findLinksInto().each(function(link) { additionResult += parseFloat(link.findObject("displayText").text)});
+            node.findLinksInto().each(function (link) { additionResult += parseFloat(link.findObject("displayText").text) });
             //var addResult = toString(parseFloat(count[0].findObject("displayText").text) + parseFloat(count[1].findObject("displayText").text));
             var color = "lightblue";
             setOutputLinks(node, color, additionResult);
         }
-        
+
         function doMult(node) {
             var additionResult = 1;
             node.findLinksInto().each(function (link) { additionResult *= parseFloat(link.findObject("displayText").text) });
@@ -509,8 +500,7 @@
         function doDivide(node) {
             var additionResult = 0;
             var linkArray = node.findLinksInto();
-            if (linkArray.count >= 2)
-            { 
+            if (linkArray.count >= 2) {
                 additionResult = parseFloat(linkArray.first().findObject("displayText").text);
                 linkArray.next();
                 var it = linkArray.iterator;
@@ -551,13 +541,13 @@
         <div id="palette2" style="width: 100px; height: 700px; margin-right: 2px; background-color: whitesmoke; border: solid 1px black"></div>
         <div id="myDiagramDiv" style="flex-grow: 1; height: 700px; margin-bottom: 2px; border: solid 1px black"></div>
     </div>
-        <div>
-            <button id="saveModel" onclick="save()" style="margin-bottom: 2px">Save</button>
-            <button onclick="load()" style="margin-bottom: 2px">Load</button>
-            <button onclick="change()" style="margin-bottom: 2px; color: red">Loop</button>
-            Diagram Model saved in JSON format:
-        </div>
-        <textarea id="mySavedModel" style="width:100%;height:200px">
+    <div>
+        <button id="saveModel" onclick="save()" style="margin-bottom: 2px">Save</button>
+        <button onclick="load()" style="margin-bottom: 2px">Load</button>
+        <button onclick="change()" style="margin-bottom: 2px; color: red">Loop</button>
+        Diagram Model saved in JSON format:
+    </div>
+<textarea id="mySavedModel" style="width:100%;height:900px">
 { "class": "GraphLinksModel",
   "linkFromPortIdProperty": "fromPort",
   "linkToPortIdProperty": "toPort",
@@ -608,3 +598,26 @@
     </textarea>
 </body>
 </html>
+
+
+<style>
+    /* style the elements with CSS */
+    #pleaserotate-graphic {
+        fill: #000;
+    }
+
+    #pleaserotate-backdrop {
+        color: #aaa;
+        background-color: #fff;
+    }
+</style>
+
+<script>
+    var portrait = window.innerWidth < window.innerHeight;
+    var PleaseRotateOptions = {
+        onlyMobile: false,
+        forcePortrait: !portrait,
+        allowClickBypass: false
+    }
+
+</script>

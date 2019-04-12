@@ -21,21 +21,22 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication1</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+                <a href=".."><img src="data:image/png;base64,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" width="30" height="30" style="margin-right: 3px" />
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dynamic business editor</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div></a>
             </div>
         </nav>
     </header>
