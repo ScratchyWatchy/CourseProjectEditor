@@ -1,0 +1,42 @@
+﻿@using System.Security.Cryptography.X509Certificates
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+@model IEnumerable<WebApplication1.Models.UserDiagram>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+<p>
+        <form asp-controller="Home" asp-action="Create" method="post" class="navbar-right">
+            <input type="text" asp-for="@Model.FirstOrDefault().Name" value=""/>
+            <input type="hidden" asp-for="@Model.FirstOrDefault().UserId" value="@UserManager.GetUserId(User)"/>
+            <button type="submit" class="flat-button">Create new</button>
+        </form>
+
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name) <div style="text-align: right"><a asp-action="Edit" class="btn flat-button" asp-route-id="@item.Id">Edit</a></div>
+                    
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

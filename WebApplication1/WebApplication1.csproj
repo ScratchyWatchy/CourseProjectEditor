@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>ba7a0b2c-8ffa-4756-8fd7-5c21fe2e9588</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190419135747_Reset.cs" />
+    <Compile Remove="Migrations\20190419135747_Reset.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Manage\ChangePassword.cshtml" />
+    <None Include="Views\Manage\Disable2fa.cshtml" />
+    <None Include="Views\Manage\EnableAuthenticator.cshtml" />
+    <None Include="Views\Manage\ExternalLogins.cshtml" />
+    <None Include="Views\Manage\GenerateRecoveryCodes.cshtml" />
+    <None Include="Views\Manage\Index.cshtml" />
+    <None Include="Views\Manage\ResetAuthenticator.cshtml" />
+    <None Include="Views\Manage\SetPassword.cshtml" />
+    <None Include="Views\Manage\ShowRecoveryCodes.cshtml" />
+    <None Include="Views\Manage\TwoFactorAuthentication.cshtml" />
+    <None Include="Views\Manage\_Layout.cshtml" />
+    <None Include="Views\Manage\_ManageNav.cshtml" />
+    <None Include="Views\Manage\_StatusMessage.cshtml" />
+    <None Include="Views\Manage\_ViewImports.cshtml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Northwoods.GoJS" Version="2.0.7" />
+    <PackageReference Include="Npgsql" Version="4.0.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>
